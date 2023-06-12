@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 70px;margin-bottom: 20px">
+            <mat-card style="margin: 0">
+                <form class="form-angular" #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
+                    <mat-error class="alert alert-primary">{{status}}</mat-error>
+                    <p>
+                        <mat-form-field appearance="outline" style="width: 350px">
+                            <mat-label>Username</mat-label>
+                            <input name="username" #username="ngModel" [(ngModel)]="form.username" matInput placeholder="username" required minlength="3" maxlength="50">
+                            <mat-icon color="accent" matSuffix>account_circle</mat-icon>
+                            <mat-error *ngIf="username.hasError('required')">The username is required !</mat-error>
+                            <mat-error *ngIf="username.hasError('minlength')">The username must at least 3 character !</mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="outline" style="width: 350px">
+                            <mat-label>Enter your password</mat-label>
+                            <input name = "password" #password="ngModel" [(ngModel)]="form.password" matInput [type]="hide ? 'password' : 'text'" required minlength="6" maxlength="100">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="password.hasError('required')">The password is required !</mat-error>
+                            <mat-error *ngIf="password.hasError('minlength')">The password must at least 6 character !</mat-error>
+                        </mat-form-field>
+                    </p>
+                    <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Register
+
+                    </button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>
